@@ -19,18 +19,7 @@ import { Home, Person, Business } from '@material-ui/icons';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { Button } from '@material-ui/core';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import CompanyHome from '../Company/companyhome'
-import CreateJob from '../Company/createjobs'
-import StudentProfile from '../Company/studentprofiles'
-import Jobprofile from '../Company/jobprofile'
+
 const useStyles = makeStyles((theme) => ({
     root: {
         // display: 'flex',
@@ -91,12 +80,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 const drawerWidth = 200;
 
-function DashboardCompany() {
+let DashboardNavbar = ({ }) => {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = useState(false);
     const [value, setValue] = React.useState(0);
-
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -109,10 +97,11 @@ function DashboardCompany() {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
     return (
-        <div className={classes.root}>
+        <div>
             <CssBaseline />
-            <AppBar style={{ color: '#fff', background: '#335f00' }}
+            <AppBar
                 position="fixed"
                 className={clsx(classes.appBar, {
                     [classes.appBarShift]: open,
@@ -129,33 +118,15 @@ function DashboardCompany() {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h5" noWrap>
-                        Comapany Dashboard
+                        {dashboardName}
                     </Typography >
                     <Typography variant="h5" noWrap style={{ marginLeft: 'auto', color: '#ffffff' }}>
                         <Button >
-                            <Link style={{ color: '#ffffff', textDecoration: "none" }} to="/">Sign Out</Link>
+                            <Link style={{ color: '#ffffff', textDecoration: "none" }} to="/">{props.btn}</Link>
                         </Button>
                     </Typography>
                 </Toolbar>
             </AppBar>
-            <Paper>
-                <Tabs
-                    value={value}
-                    onChange={handleChange}
-                    indicatorColor="primary"
-                    textColor="primary"
-                    centered
-                >
-                    <Link style={{ textDecoration: 'none' }} to='/DashboardCompany/companyhome'><Tab style={{ color: 'rgb(63 112 7)', fontSize: '12px' }} label="Home" /></Link>
-                    <Link style={{ textDecoration: 'none' }} to='/DashboardCompany/jobprofile'><Tab style={{ color: 'rgb(63 112 7)', fontSize: '12px' }} label="Jobs Profile" /></Link>
-                    <Link style={{ textDecoration: 'none' }} to='/DashboardCompany/createjob'><Tab style={{ color: 'rgb(63 112 7)', fontSize: '12px' }} label="Create Jobs" /></Link>
-                    <Link style={{ textDecoration: 'none' }} to='/DashboardCompany/studentprofile'><Tab style={{ color: 'rgb(63 112 7)', fontSize: '12px' }} label="Student Profiles" /></Link>
-                </Tabs>
-            </Paper>
-            <Route path="/DashboardCompany/companyhome" component={CompanyHome} />
-            <Route path="/DashboardCompany/jobprofile" component={Jobprofile} />
-            <Route path="/DashboardCompany/createjob" component={CreateJob} />
-            <Route path="/DashboardCompany/studentprofile" component={StudentProfile} />
             <Drawer
                 className={classes.drawer}
                 variant="persistent"
@@ -176,28 +147,25 @@ function DashboardCompany() {
                         <ListItemIcon>
                             <Home />
                         </ListItemIcon>
-                        <Link style={{ textDecoration: 'none', color: 'black', marginTop: '7px' }} to='/DashboardCompany/companyhome'><ListItemText primary="Home" /> </Link>
+                        <ListItemText primary="Home" />
                     </ListItem>
                     <ListItem button>
                         <ListItemIcon>
                             <Person />
                         </ListItemIcon>
-                        {/* <ListItemText primary="Jobs Profile" /> */}
-                        <Link style={{ textDecoration: 'none', color: 'black', marginTop: '7px' }} to='/DashboardCompany/jobprofile'><ListItemText primary="Jobs Profile" /> </Link>
+                        <ListItemText primary="Profile" />
                     </ListItem>
                     <ListItem button>
                         <ListItemIcon>
                             <Person />
                         </ListItemIcon>
-                        {/* <ListItemText primary="Create Jobs" /> */}
-                        <Link style={{ textDecoration: 'none', color: 'black', marginTop: '7px' }} to='/DashboardCompany/createjob'><ListItemText primary="Create Jobs" /> </Link>
+                        <ListItemText primary="Jobs" />
                     </ListItem>
                     <ListItem button>
                         <ListItemIcon>
                             <Business />
                         </ListItemIcon>
-                        {/* <ListItemText primary="Student Profiles" /> */}
-                        <Link style={{ textDecoration: 'none', color: 'black', marginTop: '7px' }} to='/DashboardCompany/studentprofile'><ListItemText primary="Student Profiles" /> </Link>
+                        <ListItemText primary="Create Cv" />
                     </ListItem>
                 </List>
                 <Divider />
@@ -212,11 +180,7 @@ function DashboardCompany() {
                     </ListItem>
                 </List>
             </Drawer>
-        </div >
-    );
+        </div>
+    )
 }
-
-export default DashboardCompany
-
-
-
+export default DashboardNavbar;

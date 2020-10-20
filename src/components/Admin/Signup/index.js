@@ -15,7 +15,7 @@ import Container from '@material-ui/core/Container';
 import { db, auth } from '../../../config/firebase';
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-
+// import CustomNavbar from '../../../component-common/Navbar';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -79,89 +79,93 @@ function AdminSignup(props) {
     }
     const classes = useStyles();
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    Admin Sign up
-          </Typography>
-                <form className={classes.form} noValidate>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                autoComplete="fname"
-                                name="firstName"
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="firstName"
-                                label="First Name"
-                                autoFocus
-                                onChange={(e) => setFirstName(e.target.value)}
-                            />
+        <div>
+            {/* <CustomNavbar /> */}
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <div className={classes.paper}>
+                    <Avatar className={classes.avatar}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Admin Sign up
+                    </Typography>
+                    <form className={classes.form} noValidate>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    autoComplete="fname"
+                                    name="firstName"
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="firstName"
+                                    label="First Name"
+                                    autoFocus
+                                    onChange={(e) => setFirstName(e.target.value)}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="lastName"
+                                    label="Last Name"
+                                    name="lastName"
+                                    autoComplete="lname"
+                                    onChange={(e) => setLastName(e.target.value)}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="email"
+                                    label="Email Address"
+                                    name="email"
+                                    autoComplete="email"
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    name="password"
+                                    label="Password"
+                                    type="password"
+                                    id="password"
+                                    autoComplete="current-password"
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                            </Grid>
                         </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="lastName"
-                                label="Last Name"
-                                name="lastName"
-                                autoComplete="lname"
-                                onChange={(e) => setLastName(e.target.value)}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </Grid>
-                    </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        style={{ backgroundColor: '#335f00' }}
-                        className={classes.submit}
-                        onClick={(e) => adminRegistered(e)}
-                    >
-                        Sign Up
-            </Button>
-                    <Grid container style={{ display: 'flex', justifyContent: "center" }}>
-                        <Grid item>
-                            <Link variant="body2" to='/Login'>
-                                Already have an account? Sign in
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            style={{ backgroundColor: '#335f00' }}
+                            className={classes.submit}
+                            onClick={(e) => adminRegistered(e)}
+                        >
+                            Sign Up
+                       </Button>
+                        <Grid container style={{ display: 'flex', justifyContent: "center" }}>
+                            <Grid item>
+                                <Link variant="body2" to='/Login'>
+                                    Already have an account? Sign in
                 </Link>
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </form>
-            </div>
-        </Container>
+                    </form>
+                </div>
+            </Container>
+        </div>
+
     );
 }
 

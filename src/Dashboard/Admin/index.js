@@ -15,15 +15,23 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import { Home, Person, Business } from '@material-ui/icons';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { Button } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-
-
+import Studentdeatils from './studentdeatil'
+import Studentdata from './studentdata'
+import Companydata from './companydata'
+import Companydeatil from './companydeatil'
 const useStyles = makeStyles((theme) => ({
     root: {
-        display: 'flex',
+        // display: 'flex',
+    },
+    rooot: {
+        // flexGrow: 1,
     },
     appBar: {
         transition: theme.transitions.create(['margin', 'width'], {
@@ -78,10 +86,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 const drawerWidth = 200;
 
+
 function DashboardAdmin() {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = useState(false);
+    const [value, setValue] = React.useState(0);
+
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -91,10 +102,13 @@ function DashboardAdmin() {
         setOpen(false);
     };
 
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBar
+            <AppBar style={{ color: '#fff', background: '#335f00' }}
                 position="fixed"
                 className={clsx(classes.appBar, {
                     [classes.appBarShift]: open,
@@ -110,16 +124,62 @@ function DashboardAdmin() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap>
+                    <Typography variant="h5" noWrap>
                         Admin Dashboard
-                    </Typography>
-                    <Typography style={{ marginLeft: 'auto', color: '#ffffff', fontSize: '1 rem' }}>
-                        <Button style={{ color: '#ffffff', textDecoration: "none" }} >
+                    </Typography >
+                    <Typography variant="h5" noWrap style={{ marginLeft: 'auto', color: '#ffffff' }}>
+                        <Button >
                             <Link style={{ color: '#ffffff', textDecoration: "none" }} to="/">Sign Out</Link>
                         </Button>
                     </Typography>
                 </Toolbar>
             </AppBar>
+            <Paper>
+                <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    indicatorColor="primary"
+                    // textColor="primary"
+                    centered
+                >
+                    {/* <Link style={{ textDecoration: 'none' }} to='/DashboardAdmin/studentdeatil'><Tab style={{ color: 'rgb(63 112 7)', fontSize: '12px' }} label="Student  " /></Link> */}
+                    <Link style={{ textDecoration: 'none' }} to='/DashboardAdmin/studentdeatil'><Tab style={{ color: 'rgb(63 112 7)', fontSize: '12px' }} label="Student Deatils " /></Link>
+                    <Link style={{ textDecoration: 'none' }} to='/DashboardAdmin/companydeatil'><Tab style={{ color: 'rgb(63 112 7)', fontSize: '12px' }} label="Company Deatils " /></Link>
+                    <Link style={{ textDecoration: 'none' }} to='/DashboardAdmin/studentdata'><Tab style={{ color: 'rgb(63 112 7)', fontSize: '12px' }} label="Student Profile" /></Link>
+                    <Link style={{ textDecoration: 'none' }} to='/DashboardAdmin/companydata'><Tab style={{ color: 'rgb(63 112 7)', fontSize: '12px' }} label="Company" /></Link>
+                </Tabs>
+            </Paper>
+            <Route path="/DashboardAdmin/studentdeatil" component={Studentdeatils} />
+            <Route path="/DashboardAdmin/studentdata" component={Studentdata} />
+            <Route path="/DashboardAdmin/companydeatil" component={Companydeatil} />
+            <Route path="/DashboardAdmin/companydata" component={Companydata} />
+            {/* <h1>Home </h1> */}
+            {/* <Card className={classes.root}>
+                <CardActionArea>
+                    <CardMedia
+                        className={classes.media}
+                        image="/static/images/cards/contemplative-reptile.jpg"
+                        title="Contemplative Reptile"
+                    />
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            Lizard
+          </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+                            across all continents except Antarctica
+          </Typography>
+                    </CardContent>
+                </CardActionArea>
+                <CardActions>
+                    <Button size="small" color="primary">
+                        Share
+        </Button>
+                    <Button size="small" color="primary">
+                        Learn More
+        </Button>
+                </CardActions>
+            </Card> */}
             <Drawer
                 className={classes.drawer}
                 variant="persistent"
@@ -135,25 +195,39 @@ function DashboardAdmin() {
                     </IconButton>
                 </div>
                 <Divider />
-                <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
+                <List variant="h4">
+                    <ListItem button>
+                        <ListItemIcon>
+                            <Home />
+                        </ListItemIcon>
+                        <Link style={{ textDecoration: 'none', color: 'black', marginTop: '7px' }}><ListItemText primary="Home" /> </Link>
+                    </ListItem>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <Person />
+                        </ListItemIcon>
+                        <Link style={{ textDecoration: 'none', color: 'black', marginTop: '7px' }} to='/DashboardAdmin/studentdeatil'>  <ListItemText primary="Student" /></Link>
+                    </ListItem>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <Business />
+                        </ListItemIcon>
+                        <Link style={{ textDecoration: 'none', color: 'black', marginTop: '7px' }} to='/DashboardAdmin/companydeatil'><ListItemText primary="Company" /></Link>
+                    </ListItem>
                 </List>
                 <Divider />
                 <List>
-                    <ListItem style={{ fontSize: '1 rem' }}>
-                        <Button style={{ textDecoration: "none" }} >
-
-                            <Link style={{ textDecoration: "none" }} to="/">LOG OUT</Link>
-                        </Button>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <ExitToAppIcon />
+                        </ListItemIcon>
+                        <Link style={{ textDecoration: 'none ', color: "#000" }} to="/">
+                            <ListItemText primary="Log out" />
+                        </Link>
                     </ListItem>
                 </List>
             </Drawer>
-        </div>
+        </div >
     );
 }
 

@@ -58,7 +58,7 @@ function StudentSignup(props) {
                     email: userEmail,
                     password
                 });
-                props.history.push('/Login')
+                props.history.push('/DashboardStudent')
             })
             .catch(error => {
                 console.error('error ', error);
