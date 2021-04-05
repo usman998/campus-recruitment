@@ -1,14 +1,7 @@
 import firebase from 'firebase';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCozGKQgxju2K118G5Gx0-wqOHIO8MF-wI",
-    authDomain: "campusrecuirnment.firebaseapp.com",
-    databaseURL: "https://campusrecuirnment.firebaseio.com",
-    projectId: "campusrecuirnment",
-    storageBucket: "campusrecuirnment.appspot.com",
-    messagingSenderId: "1061776537583",
-    appId: "1:1061776537583:web:5bdb5c60a04561547a281a",
-    measurementId: "G-MGM07WJPG1"
+   
 };;
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
